@@ -52,9 +52,10 @@ def translate(text):
     return " ".join(tgt_text)
 
 
-@app.route("/translate")
+@app.route("/translate",  methods=['POST'])
 def app_translate():
-    text = request.args.get('text', '')
+    req_data = request.get_json(force=True)
+    text = req_data.get('text', '')
 
     return {
         'text': translate(text)
