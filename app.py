@@ -64,6 +64,9 @@ def app_translate():
         'text': translate(text)
     }
 
+if __name__ == "__main__":
+    app.run(threaded=True)
+
 # translate("Hello world. This is last time ")
 
 # translate("""The project is called QueryStorm. It uses Roslyn to offer C# (and VB.NET) support in Excel, as an alternative to VBA. I've posted about it before, but a lot has changed since then so figured I'd share an update.
