@@ -3,12 +3,15 @@ import nltk
 from flask import Flask, request
 from nltk.tokenize import sent_tokenize
 from transformers import MarianMTModel, MarianTokenizer
+
+
 nltk.download('punkt')
-
-
 modchoice = "Helsinki-NLP/opus-mt-en-zh"
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+
+tokenizer = MarianTokenizer.from_pretrained(modchoice)
+model = MarianMTModel.from_pretrained(modchoice)
 
 
 def clean_text(text):
@@ -38,8 +41,6 @@ def clean_text(text):
 
 def translate(text):
     input_text = clean_text(text)
-    tokenizer = MarianTokenizer.from_pretrained(modchoice)
-    model = MarianMTModel.from_pretrained(modchoice)
     if input_text is None or text == "":
         return ("Error",)
     translated = model.generate(
