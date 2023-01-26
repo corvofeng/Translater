@@ -1,12 +1,13 @@
 import re
 import nltk
-from flask import Flask
+from flask import Flask, request
 from nltk.tokenize import sent_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 nltk.download('punkt')
 
 
 modchoice = "Helsinki-NLP/opus-mt-en-zh"
+app = Flask(__name__)
 
 def clean_text(text):
     text = text.encode("ascii", errors="ignore").decode(
@@ -51,12 +52,13 @@ def translate(text):
     return " ".join(tgt_text)
 
 
+@app.route("/translate")
+def translate():
+    text = request.args.get('text', '')
 
-app = Flask(__name__)
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+    return {
+        'text': translate(text)
+    }
 
 # translate("Hello world. This is last time ")
 
