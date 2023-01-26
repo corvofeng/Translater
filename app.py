@@ -53,7 +53,7 @@ def translate(text):
 
 
 @app.route("/translate")
-def translate():
+def app_translate():
     text = request.args.get('text', '')
 
     return {
