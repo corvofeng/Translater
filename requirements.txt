@@ -2,4 +2,5 @@ transformers
 scipy
 ftfy
 accelerate
-sentencepiec
+sentencepiece
+flask

@@ -1,6 +1,6 @@
 import re
 import nltk
-from flask import Flask, request
+from flask import Flask
 from nltk.tokenize import sent_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 nltk.download('punkt')
@@ -54,13 +54,9 @@ def translate(text):
 
 app = Flask(__name__)
 
-@app.route("/translate")
-def translate():
-    text = request.args.get('text', '')
-
-    return {
-        'text': translate(text)
-    }
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
 
 # translate("Hello world. This is last time ")
 
