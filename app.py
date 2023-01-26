@@ -8,6 +8,8 @@ nltk.download('punkt')
 
 modchoice = "Helsinki-NLP/opus-mt-en-zh"
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
+
 
 def clean_text(text):
     text = text.encode("ascii", errors="ignore").decode(
